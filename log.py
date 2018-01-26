@@ -35,7 +35,14 @@ def getSeekFile():
         seekfile = '/tmp/logseek'
     return seekfile
 
-def getResult(filename,seekfile):
+def getKey():
+    try:
+        tagKey = str(sys.argv[3])
+    except IndexError:
+        tagKey = 'Error'
+    return tagKey
+
+def getResult(filename,seekfile,tagkey):
     destPos = prePos(seekfile)
     curPos = lastPos(filename)
 
@@ -52,7 +59,7 @@ def getResult(filename,seekfile):
         while curPos != 0 and f.tell() < curPos:
             rresult = f.readline().strip()
             global result
-            if re.search('Error', rresult):
+            if re.search(tagkey, rresult):
                 result = 1
                 break
             else:
@@ -67,6 +74,7 @@ def getResult(filename,seekfile):
 if __name__ == "__main__":
     result = 0
     curpos = 0
+    tagkey = getKey()
     seekfile = getSeekFile()
-    result = getResult(sys.argv[1],seekfile)
+    result = getResult(sys.argv[1],seekfile,tagkey)
     print(result)
