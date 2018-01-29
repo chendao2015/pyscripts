@@ -6,6 +6,9 @@ def prePos(seekfile):
     global curpos
     try:
         cf = open(seekfile)
+    except IOError:
+        curpos = 0
+        return curpos
     except FileNotFoundError:
         curpos = 0
         return curpos
@@ -51,6 +54,8 @@ def getResult(filename,seekfile,tagkey):
 
     try:
         f = open(filename)
+    except IOError:
+        print('Could not open file: %s' % filename)
     except FileNotFoundError:
         print('Could not open file: %s' % filename)
     else:
