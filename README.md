@@ -15,3 +15,9 @@
 #### 第六个参数为收件人列表（必须有，此列表必须是字符串，多个收件人之间用逗号隔开。例如：'a@b.com, c@d.com, e@f.com'）
 #### 第七个参数为抄送人列表（可选项，可为空。若不提供此参数则不能修改第八个参数的端口号。）
 #### 第八个参数为smtp服务器发送邮件的端口（可选项，默认为25。）
+
+### 使用方法：
+```
+import mail_send
+mail_send.send(smtp_server,user,password,subject,context,recv_user,cc_user,smtp_server_port) #把参数换成相对应的内容即可
+```
